@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,10 +17,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     private Context mContext;
     private ArrayList<ProductStatusModel> mResultList;
+    private ItemClickListener clickListener;
 
     public ProductAdapter(Context context, ArrayList<ProductStatusModel> resultList) {
         mContext = context;
         mResultList = resultList;
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
     }
 
     @Override
@@ -32,7 +38,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(final ProductAdapter.ViewHolder viewHolder, final int i) {
 
-        //viewHolder.mOffer.setText("" + mResultList.get(i).getOfferTitle());
+        viewHolder.tv_status.setText("" + mResultList.get(i).getCompleted());
+        viewHolder.tv_desc.setText("" + mResultList.get(i).getTitle());
 
     }
 
@@ -41,11 +48,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return mResultList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        TextView tv_desc,tv_status;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            tv_desc  = itemView.findViewById(R.id.tv_desc);
+            tv_status  = itemView.findViewById(R.id.tv_status);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (clickListener != null) clickListener.onClick(getAdapterPosition());
 
         }
     }
