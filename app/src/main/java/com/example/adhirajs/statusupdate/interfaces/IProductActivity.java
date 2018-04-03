@@ -10,5 +10,9 @@ import java.util.ArrayList;
 
 public interface IProductActivity {
 
+    void showProgressBar();
+
+    void hideProgressBar();
+
     void showDataLayout(ArrayList<ProductStatusModel> productStatusModels);
 }

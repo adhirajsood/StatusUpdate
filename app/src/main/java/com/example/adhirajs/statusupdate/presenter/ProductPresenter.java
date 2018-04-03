@@ -24,6 +24,7 @@ public class ProductPresenter {
     }
 
     public void fetchData(){
+        mListener.showProgressBar();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -38,12 +39,12 @@ public class ProductPresenter {
             @Override
             public void onResponse(Call<ArrayList<ProductStatusModel>> call, Response<ArrayList<ProductStatusModel>> response) {
                 mListener.showDataLayout(response.body());
-
+                mListener.hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<ArrayList<ProductStatusModel>> call, Throwable t) {
-
+                mListener.hideProgressBar();
             }
 
         });

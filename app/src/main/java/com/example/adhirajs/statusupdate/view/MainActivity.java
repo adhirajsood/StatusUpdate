@@ -1,11 +1,14 @@
 package com.example.adhirajs.statusupdate.view;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Window;
 
 import com.example.adhirajs.statusupdate.R;
 import com.example.adhirajs.statusupdate.interfaces.IProductActivity;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     ProductAdapter productAdapter;
     int positionSelected;
     ProductPresenter mPresenter;
+    Dialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,22 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                 break;
 
         }
+    }
+
+    @Override
+    public void showProgressBar() {
+        progressDialog = new Dialog(this);
+        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        progressDialog.setContentView(R.layout.dialog_progressbar);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressDialog.hide();
     }
 
     @Override
