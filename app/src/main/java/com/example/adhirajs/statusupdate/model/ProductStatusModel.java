@@ -1,4 +1,4 @@
-package com.example.adhirajs.statusupdate;
+package com.example.adhirajs.statusupdate.model;
 
 /**
  * Created by adhirajs on 2/4/18.

@@ -1,4 +1,4 @@
-package com.example.adhirajs.statusupdate;
+package com.example.adhirajs.statusupdate.interfaces;
 
 /**
  * Created by adhirajs on 3/4/18.

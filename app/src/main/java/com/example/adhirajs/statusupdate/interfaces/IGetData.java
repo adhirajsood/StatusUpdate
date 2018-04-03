@@ -1,4 +1,6 @@
-package com.example.adhirajs.statusupdate;
+package com.example.adhirajs.statusupdate.interfaces;
+
+import com.example.adhirajs.statusupdate.model.ProductStatusModel;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.adhirajs.statusupdate;
+package com.example.adhirajs.statusupdate.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.adhirajs.statusupdate.R;
+import com.example.adhirajs.statusupdate.interfaces.ItemClickListener;
+import com.example.adhirajs.statusupdate.model.ProductStatusModel;
 
 import java.util.ArrayList;
 
@@ -38,7 +42,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(final ProductAdapter.ViewHolder viewHolder, final int i) {
 
-        viewHolder.tv_status.setText("" + mResultList.get(i).getCompleted());
+        if (mResultList.get(i).getCompleted()) {
+            viewHolder.tv_status.setText("Order Placed");
+            viewHolder.tv_status.setTextColor(mContext.getResources().getColor(R.color.green));
+        }else {
+            viewHolder.tv_status.setText("Order Pending");
+            viewHolder.tv_status.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
         viewHolder.tv_desc.setText("" + mResultList.get(i).getTitle());
 
     }
