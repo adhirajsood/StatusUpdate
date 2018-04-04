@@ -14,7 +14,7 @@ import com.example.adhirajs.statusupdate.model.ProductStatusModel;
 import java.util.ArrayList;
 
 /**
- * Created by adhirajs on 2/4/18.
+ * Adapter to display the child elements for the list
  */
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {

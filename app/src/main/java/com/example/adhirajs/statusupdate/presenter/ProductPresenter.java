@@ -14,7 +14,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by adhirajs on 3/4/18.
+ * Presenter used for fetching the data
  */
 
 public class ProductPresenter {

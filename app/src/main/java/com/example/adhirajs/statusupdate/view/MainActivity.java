@@ -18,6 +18,11 @@ import com.example.adhirajs.statusupdate.presenter.ProductPresenter;
 
 import java.util.ArrayList;
 
+
+/*MainActivity.Class
+* Displays the list of product in recycler view
+* Implementation:- ItemClickListener callback event of item click in recycler view
+* IProductActivity callback event to communicate with the presenter*/
 public class MainActivity extends AppCompatActivity implements ItemClickListener,IProductActivity {
 
     RecyclerView rv_status;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     }
 
 
+    /*Click for item in recycler view*/
     @Override
     public void onClick(int position) {
         positionSelected = position;
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         startActivityForResult(intent,1);
     }
 
+
+    /*Result of the ProductDetails activity to update the item in recycler view*/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -59,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         }
     }
 
+    /*Progress bar to be displayed when api call is initiated*/
     @Override
     public void showProgressBar() {
         progressDialog = new Dialog(this);
@@ -70,18 +79,23 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         progressDialog.show();
     }
 
+    /*Hide the progress bar post api has provided the result*/
     @Override
     public void hideProgressBar() {
         progressDialog.hide();
     }
 
+    /*Method where we receive the response from API*/
     @Override
     public void showDataLayout(ArrayList<ProductStatusModel> res) {
         productStatusModels = res;
         prepareList();
     }
 
-
+    /*Preparing the list which contains
+    * 1.Initiating the adapter
+    * 2. Setting orientation to recycler view
+    * 3. setting click listener*/
     public void prepareList(){
         productAdapter = new ProductAdapter(MainActivity.this,productStatusModels);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

@@ -13,7 +13,8 @@ import com.example.adhirajs.statusupdate.R;
 import com.example.adhirajs.statusupdate.model.ProductStatusModel;
 
 /**
- * Created by adhirajs on 3/4/18.
+ * Activity to display the product details for the item clicked
+ *
  */
 
 public class ProductDetails extends AppCompatActivity{
@@ -32,6 +33,7 @@ public class ProductDetails extends AppCompatActivity{
         btn_complete = (Button) findViewById(R.id.btn_complete);
 
         tv_desc.setText(productStatusModel.getTitle());
+        /*mark complete to be displayed only if the order is pending */
         if (productStatusModel.getCompleted()){
             btn_complete.setVisibility(View.GONE);
             tv_status.setText("Order Placed");
@@ -39,6 +41,7 @@ public class ProductDetails extends AppCompatActivity{
 
     }
 
+    /*Mark complete button click for updating the status from pending to placed*/
     public void markComplete(View view) {
         if (!productStatusModel.getCompleted()) {
             productStatusModel.setCompleted(true);
@@ -48,6 +51,7 @@ public class ProductDetails extends AppCompatActivity{
         }
     }
 
+    /*Set result on back press*/
     @Override
     public void onBackPressed() {
         Intent intent = getIntent();
